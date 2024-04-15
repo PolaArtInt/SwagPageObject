@@ -29,8 +29,8 @@ def test_positive_logout(driver, standard_auth):
     assert log_btn.get_attribute('value') == 'LOGIN', 'Login button not found'
 
 
-@pytest.mark.positive
 # case 6.2
+@pytest.mark.positive
 def test_positive_about_btn(driver, standard_auth):
     menu_page = MenuMod(driver, standard_auth)
     about_page = AboutPage(driver, standard_auth)
@@ -47,9 +47,9 @@ def test_positive_about_btn(driver, standard_auth):
            curr_title == about_page.exp_title(), 'Wrong page url or title'
 
 
+# case 6.3
 @pytest.mark.defect
 @pytest.mark.positive
-# case 6.3
 def test_reset_app_state_positive(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     cart_page = CartPage(driver, standard_auth)
@@ -77,12 +77,12 @@ def test_reset_app_state_positive(driver, standard_auth):
     except AssertionError:
         print(f'Cart is not empty. There are {len(inv_page.item_names())} items in it')
 
-    driver.refresh()
+    cart_page.refresh()
 
 
+# case 6.4
 @pytest.mark.defect
 @pytest.mark.negative
-# case 6.4
 def test_reset_app_state_negative(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     cart_page = CartPage(driver, standard_auth)
@@ -120,4 +120,4 @@ def test_reset_app_state_negative(driver, standard_auth):
         print(f'\nThere are {len(add_btns_after)} "ADD TO CART" buttons instead of {len(add_btns_before)}')
         print(f'\nButtons are not unpressed after reset the app')
 
-    driver.refresh()
+    cart_page.refresh()

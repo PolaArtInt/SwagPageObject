@@ -4,8 +4,8 @@ from pages.inventory_page import InventoryPage
 from pages.filter_page import FilterMod
 
 
-@pytest.mark.positive
 # case 5.1
+@pytest.mark.positive
 def test_a_to_z_filter(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     filter_page = FilterMod(driver, standard_auth)
@@ -31,11 +31,11 @@ def test_a_to_z_filter(driver, standard_auth):
 
     assert before_a_z == after_a_z, 'Filter A to Z doesn\'t work properly'
 
-    driver.refresh()
+    inv_page.refresh()
 
 
-@pytest.mark.positive
 # case 5.2
+@pytest.mark.positive
 def test_z_to_a_filter(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     filter_page = FilterMod(driver, standard_auth)
@@ -61,11 +61,11 @@ def test_z_to_a_filter(driver, standard_auth):
 
     assert before_z_a == after_z_a, 'Filter Z to A doesn\'t work properly'
 
-    driver.refresh()
+    inv_page.refresh()
 
 
-@pytest.mark.positive
 # case 5.3
+@pytest.mark.positive
 def test_low_to_high_filter(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     filter_page = FilterMod(driver, standard_auth)
@@ -91,11 +91,11 @@ def test_low_to_high_filter(driver, standard_auth):
 
     assert before_lo_hi == after_lo_hi, 'Filter Low to High doesn\'t work properly'
 
-    driver.refresh()
+    inv_page.refresh()
 
 
-@pytest.mark.positive
 # case 5.4
+@pytest.mark.positive
 def test_high_to_low_filter(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     filter_page = FilterMod(driver, standard_auth)
@@ -121,4 +121,4 @@ def test_high_to_low_filter(driver, standard_auth):
 
     assert before_hi_lo == after_hi_lo, 'Filter Low to High doesn\'t work properly'
 
-    driver.refresh()
+    inv_page.refresh()

@@ -6,8 +6,8 @@ from pages.item_page import ItemPage
 from locators.urls import URLs
 
 
-@pytest.mark.positive
 # case 3.1
+@pytest.mark.positive
 def test_click_on_item_img(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     item_page = ItemPage(driver, standard_auth)
@@ -24,8 +24,8 @@ def test_click_on_item_img(driver, standard_auth):
            item_desc == item_card_desc, 'Different item description or wrong url'
 
 
-@pytest.mark.positive
 # case 3.2
+@pytest.mark.positive
 def test_click_on_item_title(driver, standard_auth):
     inv_page = InventoryPage(driver, standard_auth)
     item_page = ItemPage(driver, standard_auth)
