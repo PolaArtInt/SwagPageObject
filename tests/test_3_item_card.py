@@ -1,17 +1,11 @@
 import pytest
-
-from pages.inventory_page import InventoryPage
-from pages.item_page import ItemPage
-
+from pages.login_page import login
 from locators.urls import URLs
 
 
 # case 3.1
 @pytest.mark.positive
-def test_click_on_item_img(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    item_page = ItemPage(driver, standard_auth)
-
+def test_click_on_item_img(driver, login, inv_page, item_page):
     # pick item description:
     item_desc = inv_page.item_descs()[2].text
 
@@ -26,10 +20,7 @@ def test_click_on_item_img(driver, standard_auth):
 
 # case 3.2
 @pytest.mark.positive
-def test_click_on_item_title(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    item_page = ItemPage(driver, standard_auth)
-
+def test_click_on_item_title(driver, login, inv_page, item_page):
     # pick item description:
     item_desc = inv_page.item_descs()[3].text
 

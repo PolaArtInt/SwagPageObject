@@ -1,20 +1,11 @@
 import pytest
-
-from pages.inventory_page import InventoryPage
-from pages.cart_page import CartPage
-from pages.menu_page import MenuMod
-from pages.login_page import LoginPage
-from pages.about_page import AboutPage
-
+from pages.login_page import login
 from locators.urls import URLs
 
 
 # case 6.1
 @pytest.mark.positive
-def test_positive_logout(driver, standard_auth):
-    menu_page = MenuMod(driver, standard_auth)
-    log_page = LoginPage(driver, standard_auth)
-
+def test_positive_logout(driver, login, log_page, menu_page):
     # find and click burger menu:
     menu_page.menu_btn().click()
 
@@ -31,10 +22,7 @@ def test_positive_logout(driver, standard_auth):
 
 # case 6.2
 @pytest.mark.positive
-def test_positive_about_btn(driver, standard_auth):
-    menu_page = MenuMod(driver, standard_auth)
-    about_page = AboutPage(driver, standard_auth)
-
+def test_positive_about_btn(driver, login, menu_page, about_page):
     # find and click burger menu:
     menu_page.menu_btn().click()
 
@@ -50,11 +38,7 @@ def test_positive_about_btn(driver, standard_auth):
 # case 6.3
 @pytest.mark.defect
 @pytest.mark.positive
-def test_reset_app_state_positive(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-    menu_page = MenuMod(driver, standard_auth)
-
+def test_reset_app_state_positive(driver, login, inv_page, cart_page, menu_page):
     # add two items to cart:
     inv_page.add_btns()[4].click()
     inv_page.add_btns()[4].click()
@@ -83,11 +67,7 @@ def test_reset_app_state_positive(driver, standard_auth):
 # case 6.4
 @pytest.mark.defect
 @pytest.mark.negative
-def test_reset_app_state_negative(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-    menu_page = MenuMod(driver, standard_auth)
-
+def test_reset_app_state_negative(driver, login, inv_page, cart_page, menu_page):
     # check 'add to cart' buttons quantity before:
     add_btns_before = inv_page.add_btns()
 

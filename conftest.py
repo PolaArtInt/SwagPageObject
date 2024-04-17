@@ -1,10 +1,16 @@
 import pytest
 from selenium import webdriver
 
-from pages.login_page import LoginPage
+from pages.login_page import LoginPage, login
+from pages.menu_page import MenuMod
+from pages.cart_page import CartPage
+from pages.inventory_page import InventoryPage
+from pages.filter_page import FilterMod
+from pages.item_page import ItemPage
+from pages.order_page import OrderPage
+from pages.about_page import AboutPage
 from pages.form_page import FormPage
 
-from locators.auth_module import AuthData
 from locators.form_data import FormLocs
 from locators.urls import URLs
 
@@ -32,66 +38,56 @@ def fake():
     return fake
 
 
+# pages:
 @pytest.fixture()
-def standard_auth(driver):
-    page = LoginPage(driver, URLs.url)
-    page.open()
-
-    page.input_user().send_keys(AuthData.user)
-    page.input_pass().send_keys(AuthData.pass_word)
-    page.login_btn().click()
+def log_page(driver):
+    log_page = LoginPage(driver, URLs.url)
+    return log_page
 
 
 @pytest.fixture()
-def locked_out_auth(driver):
-    page = LoginPage(driver, URLs.url)
-    page.open()
-
-    page.input_user().send_keys(AuthData.locked_user)
-    page.input_pass().send_keys(AuthData.pass_word)
-    page.login_btn().click()
+def menu_page(driver, login):
+    menu_page = MenuMod(driver, login)
+    return menu_page
 
 
 @pytest.fixture()
-def problem_auth(driver):
-    page = LoginPage(driver, URLs.url)
-    page.open()
-
-    page.input_user().send_keys(AuthData.problem_user)
-    page.input_pass().send_keys(AuthData.pass_word)
-    page.login_btn().click()
+def inv_page(driver):
+    inv_page = InventoryPage(driver, URLs.inventory_url)
+    return inv_page
 
 
 @pytest.fixture()
-def glitch_auth(driver):
-    page = LoginPage(driver, URLs.url)
-    page.open()
-
-    page.input_user().send_keys(AuthData.glitch_user)
-    page.input_pass().send_keys(AuthData.pass_word)
-    page.login_btn().click()
+def filter_page(driver, login):
+    filter_page = FilterMod(driver, login)
+    return filter_page
 
 
 @pytest.fixture()
-def form_conditions(driver):
-    page = FormPage(driver, FormLocs.form_url)
-    page.open()
+def cart_page(driver):
+    cart_page = CartPage(driver, URLs.cart_url)
+    return cart_page
 
-    assert driver.current_url == FormLocs.form_url and \
-           FormLocs.form_header == 'Register', 'Wrong page'
 
-    name_field = page.form_name()
-    pass_field = page.form_pass()
-    checkbox = page.form_checkbox()
+@pytest.fixture()
+def item_page(driver, login):
+    item_page = ItemPage(driver, login)
+    return item_page
 
-    if checkbox.is_selected() or name_field.text != '' or pass_field.text != '':
-        checkbox.click()
-        name_field.clear()
-        pass_field.clear()
 
-    assert name_field.text == '', 'Input Email is filled'
-    assert pass_field.text == '', 'Input Password is filled'
-    assert not checkbox.is_selected(), 'Checkbox is selected'
+@pytest.fixture()
+def order_page(driver):
+    order_page = OrderPage(driver, URLs.checkout_url)
+    return order_page
 
-    yield form_conditions
-    # page.open()
+
+@pytest.fixture()
+def about_page(driver):
+    about_page = AboutPage(driver, URLs.about_url)
+    return about_page
+
+
+@pytest.fixture()
+def form_page(driver):
+    form_page = FormPage(driver, FormLocs.form_url)
+    return form_page

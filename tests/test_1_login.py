@@ -1,8 +1,7 @@
 import pytest
 import requests
 
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
+from pages.login_page import locked_out_log, problem_log, glitch_log
 
 from locators.auth_module import AuthLocs, AuthData
 from locators.urls import URLs
@@ -11,9 +10,7 @@ from locators.urls import URLs
 # case 1.1
 # standard auth:
 @pytest.mark.positive
-def test_auth_positive(driver, standard_auth):
-    inv_page = InventoryPage(driver, URLs.inventory_url)
-
+def test_auth_positive(driver, inv_page, login):
     assert driver.current_url == URLs.inventory_url, 'Wrong url'
     assert inv_page.inventory_header().text == 'Products', 'Wrong page header'
     assert len(inv_page.inventory_cards()) > 0, 'There are no item cards on the inventory page'
@@ -24,9 +21,7 @@ def test_auth_positive(driver, standard_auth):
 # case 1.2
 # locked out auth:
 @pytest.mark.positive
-def test_auth_positive_locked_out_user(driver, locked_out_auth):
-    log_page = LoginPage(driver, URLs.url)
-
+def test_auth_positive_locked_out_user(driver, locked_out_log, log_page):
     assert driver.current_url == URLs.url, 'Wrong url'
     assert log_page.locked_msg() == AuthLocs.locked_msg, 'Login error'
 
@@ -36,9 +31,7 @@ def test_auth_positive_locked_out_user(driver, locked_out_auth):
 # case 1.3
 # problem auth:
 @pytest.mark.positive
-def test_auth_positive_problem_user(driver, problem_auth):
-    inv_page = InventoryPage(driver, URLs.inventory_url)
-
+def test_auth_positive_problem_user(driver, problem_log, inv_page):
     assert driver.current_url == URLs.inventory_url, 'Wrong url'
     assert inv_page.inventory_header().text == 'Products', 'Wrong page header'
     assert len(inv_page.inventory_cards()) > 0, 'There are no item cards on the inventory page'
@@ -50,9 +43,7 @@ def test_auth_positive_problem_user(driver, problem_auth):
 # problem auth:
 @pytest.mark.defect
 @pytest.mark.negative
-def test_auth_positive_problem_user(driver, problem_auth):
-    inv_page = InventoryPage(driver, problem_auth)
-
+def test_problem_user_negative_inventory_imgs(driver, problem_log, inv_page):
     imgs = inv_page.item_imgs()
     broken_url_sample = 'WithGarbageOnItToBreakTheUrl'
 
@@ -70,9 +61,7 @@ def test_auth_positive_problem_user(driver, problem_auth):
 # perfomance glitch auth:
 @pytest.mark.slow
 @pytest.mark.positive
-def test_auth_positive_performance_glitch_user(driver, glitch_auth):
-    inv_page = InventoryPage(driver, URLs.inventory_url)
-
+def test_auth_positive_performance_glitch_user(driver, glitch_log, inv_page):
     assert driver.current_url == URLs.inventory_url, 'Wrong url'
     assert inv_page.inventory_header().text == 'Products', 'Wrong page header'
     assert len(inv_page.inventory_cards()) > 0, 'There are no item cards on the inventory page'
@@ -83,8 +72,7 @@ def test_auth_positive_performance_glitch_user(driver, glitch_auth):
 # case 1.5
 # wrong auth:
 @pytest.mark.negative
-def test_auth_negative_wrong_login(driver):
-    log_page = LoginPage(driver, URLs.url)
+def test_auth_negative_wrong_login(driver, log_page):
     log_page.open()
 
     log_page.input_user().send_keys(AuthData.wrong_user)

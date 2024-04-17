@@ -1,18 +1,10 @@
 import pytest
-
-from pages.cart_page import CartPage
-from pages.inventory_page import InventoryPage
-from pages.item_page import ItemPage
-
 from locators.urls import URLs
 
 
 # case 2.1
 @pytest.mark.positive
-def test_add_to_cart(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-
+def test_add_to_cart(driver, login, inv_page, cart_page):
     # pick item text:
     item_title = inv_page.item_names()[3].text
 
@@ -39,10 +31,7 @@ def test_add_to_cart(driver, standard_auth):
 
 # case 2.2
 @pytest.mark.positive
-def test_remove_from_cart(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-
+def test_remove_from_cart(driver, login, inv_page, cart_page):
     # pick 3 items and add to cart:
     inv_page.add_btns()[5].click()
     inv_page.add_btns()[1].click()
@@ -71,11 +60,7 @@ def test_remove_from_cart(driver, standard_auth):
 
 # case 2.3
 @pytest.mark.positive
-def test_add_item_from_item_card(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    item_page = ItemPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-
+def test_add_item_from_item_card(driver, login, inv_page, cart_page, item_page):
     # pick item title click it and go to item card:
     item_title = inv_page.item_names()[3].text
     inv_page.item_names()[3].click()
@@ -100,11 +85,7 @@ def test_add_item_from_item_card(driver, standard_auth):
 
 # case 2.4
 @pytest.mark.positive
-def test_remove_item_from_item_card(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    item_page = ItemPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-
+def test_remove_item_from_item_card(driver, login, inv_page, cart_page, item_page):
     # pick item text and add item to cart:
     item_title_before = inv_page.item_names()[2].text
     inv_page.add_btns()[2].click()

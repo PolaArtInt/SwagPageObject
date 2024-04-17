@@ -1,19 +1,11 @@
 import pytest
-
-from pages.inventory_page import InventoryPage
-from pages.cart_page import CartPage
-from pages.order_page import OrderPage
-
+from pages.login_page import login
 from locators.urls import URLs
 
 
 # case 4.1
 @pytest.mark.positive
-def test_positive_order(driver, fake, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-    order_page = OrderPage(driver, standard_auth)
-
+def test_positive_order(driver, fake, login, inv_page, cart_page, order_page):
     # pick items and add it to cart:
     inv_page.add_btns()[5].click()
     inv_page.add_btns()[0].click()
@@ -52,11 +44,7 @@ def test_positive_order(driver, fake, standard_auth):
 @pytest.mark.defect
 @pytest.mark.xfail
 @pytest.mark.negative
-def test_negative_empty_order(driver, fake, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    cart_page = CartPage(driver, standard_auth)
-    order_page = OrderPage(driver, standard_auth)
-
+def test_negative_empty_order(driver, fake, login, inv_page, cart_page, order_page):
     # go to cart:
     cart_page.cart_btn().click()
 

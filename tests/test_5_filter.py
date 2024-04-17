@@ -1,15 +1,10 @@
 import pytest
-
-from pages.inventory_page import InventoryPage
-from pages.filter_page import FilterMod
+from pages.login_page import login
 
 
 # case 5.1
 @pytest.mark.positive
-def test_a_to_z_filter(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    filter_page = FilterMod(driver, standard_auth)
-
+def test_a_to_z_filter(driver, login, inv_page, filter_page):
     # sort items a-z before clicking on a-z filter:
     items_before_a_z = inv_page.item_names()
     before_a_z = []
@@ -36,10 +31,7 @@ def test_a_to_z_filter(driver, standard_auth):
 
 # case 5.2
 @pytest.mark.positive
-def test_z_to_a_filter(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    filter_page = FilterMod(driver, standard_auth)
-
+def test_z_to_a_filter(driver, login, inv_page, filter_page):
     # sort items z-a before clicking on a-z filter:
     items_before_z_a = inv_page.item_names()
     before_z_a = []
@@ -66,10 +58,7 @@ def test_z_to_a_filter(driver, standard_auth):
 
 # case 5.3
 @pytest.mark.positive
-def test_low_to_high_filter(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    filter_page = FilterMod(driver, standard_auth)
-
+def test_low_to_high_filter(driver, login, inv_page, filter_page):
     # sort items low-high before clicking on low-high filter:
     prices_before_lo_hi = inv_page.item_prices()
     before_lo_hi = []
@@ -96,10 +85,7 @@ def test_low_to_high_filter(driver, standard_auth):
 
 # case 5.4
 @pytest.mark.positive
-def test_high_to_low_filter(driver, standard_auth):
-    inv_page = InventoryPage(driver, standard_auth)
-    filter_page = FilterMod(driver, standard_auth)
-
+def test_high_to_low_filter(driver, login, inv_page, filter_page):
     # sort items high-low before clicking on low-high filter:
     prices_before_hi_lo = inv_page.item_prices()
     before_hi_lo = []
