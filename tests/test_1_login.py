@@ -55,6 +55,7 @@ def test_problem_user_negative_inventory_imgs(driver, problem_log, inv_page):
             print(f'\n{response} Image: {img.get_dom_attribute('src')} is not visible')
 
     assert driver.current_url == URLs.inventory_url, 'Wrong url'
+    print(f'\nProblem user...')
 
 
 # case 1.4
