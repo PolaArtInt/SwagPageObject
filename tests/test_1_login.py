@@ -2,7 +2,6 @@ import pytest
 import requests
 
 from pages.login_page import locked_out_log, problem_log, glitch_log
-
 from locators.auth_module import AuthLocs, AuthData
 from locators.urls import URLs
 

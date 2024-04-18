@@ -20,7 +20,7 @@ def driver():
     options = webdriver.ChromeOptions()
     options.page_load_strategy = 'normal'
 
-    # chrome_options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--window-size=1280,1000")
     options.add_argument("--incognito")
