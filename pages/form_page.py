@@ -4,16 +4,15 @@ from locators.form_data import FormLocs
 
 
 @pytest.fixture()
-def form_conditions(driver):
-    page = FormPage(driver, FormLocs.form_url)
-    page.open()
+def form_conditions(driver, form_page):
+    form_page.open()
 
     assert driver.current_url == FormLocs.form_url and \
            FormLocs.form_header == 'Register', 'Wrong page'
 
-    name_field = page.form_name()
-    pass_field = page.form_pass()
-    checkbox = page.form_checkbox()
+    name_field = form_page.form_name()
+    pass_field = form_page.form_pass()
+    checkbox = form_page.form_checkbox()
 
     if checkbox.is_selected() or name_field.text != '' or pass_field.text != '':
         checkbox.click()
@@ -25,7 +24,6 @@ def form_conditions(driver):
     assert not checkbox.is_selected(), 'Checkbox is selected'
 
     yield form_conditions
-    # page.open()
 
 
 class FormPage(BasePage):
