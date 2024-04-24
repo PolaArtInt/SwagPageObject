@@ -1,60 +1,78 @@
 import pytest
+import allure
 from selenium.common import TimeoutException
 
 from pages.form_page import form_conditions
 from locators.form_data import FormLocs
 
 
-# case 0.1
+@allure.id('#0.1')
+@allure.feature('form page')
+@allure.story('form button clickability')
 @pytest.mark.positive
 def test_register_btn_unblocked(driver, fake, form_conditions, form_page):
-    form_page.form_name().send_keys(fake.name())
-    form_page.form_pass().send_keys(fake.password())
+    with allure.step('fill all the fields and check the checkbox'):
+        form_page.form_name().send_keys(fake.name())
+        form_page.form_pass().send_keys(fake.password())
 
-    checkbox = form_page.form_checkbox()
-    checkbox.click()
+        checkbox = form_page.form_checkbox()
+        checkbox.click()
 
-    assert checkbox.is_selected(), 'Checkbox is not checked'
-    assert form_page.form_reg_btn().is_enabled(), 'Register button is blocked'
+    with allure.step('check a register button clickability'):
+        assert checkbox.is_selected(), 'Checkbox is not checked'
+        assert form_page.form_reg_btn().is_enabled(), 'Register button is blocked'
 
 
-# case 0.2
+@allure.id('#0.2')
+@allure.feature('form page')
+@allure.story('form fields filling')
 @pytest.mark.positive
 def test_positive_fill_form_fields(driver, fake, form_conditions, form_page):
-    form_page.form_name().send_keys(fake.name())
-    form_page.form_pass().send_keys(fake.password())
+    with allure.step('fill the standard data in the form fields'):
+        form_page.form_name().send_keys(fake.name())
+        form_page.form_pass().send_keys(fake.password())
+    with allure.step('check the checkbox and click the register button'):
+        form_page.form_checkbox().click()
+        form_page.form_reg_btn().click()
 
-    form_page.form_checkbox().click()
-    form_page.form_reg_btn().click()
-
-    assert driver.current_url != FormLocs.form_url, 'Url is not changed'
+    with allure.step('check the url is changed'):
+        assert driver.current_url != FormLocs.form_url, 'Url is not changed'
 
 
-# case 0.3
+@allure.id('#0.3')
+@allure.feature('form page')
+@allure.story('form fields filling')
 @pytest.mark.defect
 @pytest.mark.negative
 def test_negative_fill_name_with_spaces(driver, fake, form_conditions, form_page):
-    form_page.form_name().send_keys('  ')
-    form_page.form_pass().send_keys(fake.password())
-    form_page.form_checkbox().click()
+    with allure.step('fill the username field with spaces'):
+        form_page.form_name().send_keys('  ')
+    with allure.step('fill the correct password and check the checkbox'):
+        form_page.form_pass().send_keys(fake.password())
+        form_page.form_checkbox().click()
 
-    try:
-        assert form_page.form_reg_btn().is_enabled(), 'Name is incorrect. Register button should be blocked'
-    except AssertionError:
-        pass
-    else:
-        print('Name is incorrect. Register button should be blocked')
+    with allure.step('expecting the registration button is enabled and the error message is provided'):
+        try:
+            assert form_page.form_reg_btn().is_enabled(), 'Name is incorrect. Register button should be blocked'
+        except AssertionError:
+            pass
+        else:
+            print('Name is incorrect. Register button should be blocked')
 
 
-# case 0.4
+@allure.id('#0.4')
+@allure.feature('form page')
+@allure.story('form fields filling')
 @pytest.mark.defect
 @pytest.mark.negative
 def test_btn_blocked_with_empty_fields(driver, form_conditions, form_page):
-    form_page.form_checkbox().click()
+    with allure.step('check the checkbox'):
+        form_page.form_checkbox().click()
 
-    try:
-        assert not form_page.form_reg_btn().is_enabled(), 'Fields are empty. Register button should be blocked'
-    except (TimeoutException, AssertionError):
-        pass
-    else:
-        print('Fields are empty. Register button should be blocked')
+    with allure.step('expecting the registration button is not enabled and the error message is provided'):
+        try:
+            assert not form_page.form_reg_btn().is_enabled(), 'Fields are empty. Register button should be blocked'
+        except (TimeoutException, AssertionError):
+            pass
+        else:
+            print('Fields are empty. Register button should be blocked')

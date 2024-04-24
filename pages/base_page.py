@@ -1,3 +1,5 @@
+import allure
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
@@ -11,10 +13,12 @@ class BasePage:
         self.wait = WebDriverWait(self.driver, 10)
 
     def open(self):
-        self.driver.get(self.url)
+        with allure.step('open the page'):
+            self.driver.get(self.url)
 
     def refresh(self):
-        return self.driver.refresh()
+        with allure.step('refresh the page'):
+            self.driver.refresh()
 
     def find_elems(self, locator) -> list[WebElement]:
         return self.driver.find_elements(*locator)
