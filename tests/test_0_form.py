@@ -9,7 +9,7 @@ from locators.form_data import FormLocs
 @allure.id('0.1')
 @allure.epic('form page')
 @allure.feature('form')
-@allure.description('form button clickability')
+@allure.title('form button clickability')
 @pytest.mark.positive
 def test_register_btn_unblocked(driver, fake, form_conditions, form_page):
     with allure.step('fill all the fields and check the checkbox'):
@@ -27,7 +27,7 @@ def test_register_btn_unblocked(driver, fake, form_conditions, form_page):
 @allure.id('0.2')
 @allure.epic('form page')
 @allure.feature('form')
-@allure.description('form fields filling')
+@allure.title('form fields filling')
 @pytest.mark.positive
 def test_positive_fill_form_fields(driver, fake, form_conditions, form_page):
     with allure.step('fill the standard data in the form fields'):
@@ -44,7 +44,7 @@ def test_positive_fill_form_fields(driver, fake, form_conditions, form_page):
 @allure.id('0.3')
 @allure.epic('form page')
 @allure.feature('form')
-@allure.description('form fields filling')
+@allure.title('form fields filling')
 @pytest.mark.defect
 @pytest.mark.negative
 def test_negative_fill_name_with_spaces(driver, fake, form_conditions, form_page):
@@ -66,7 +66,7 @@ def test_negative_fill_name_with_spaces(driver, fake, form_conditions, form_page
 @allure.id('0.4')
 @allure.epic('form page')
 @allure.feature('form')
-@allure.description('form fields filling')
+@allure.title('form fields filling')
 @pytest.mark.defect
 @pytest.mark.negative
 def test_btn_blocked_with_empty_fields(driver, form_conditions, form_page):

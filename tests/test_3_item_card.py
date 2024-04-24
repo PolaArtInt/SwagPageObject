@@ -7,7 +7,7 @@ from locators.urls import URLs
 @allure.id('3.1')
 @allure.epic('item page')
 @allure.feature('item card')
-@allure.description('go to product card by clicking the item image')
+@allure.title('go to product card by clicking the item image')
 @pytest.mark.positive
 def test_click_on_item_img(driver, login, inv_page, item_page):
     with allure.step('pick the item description'):
@@ -25,7 +25,7 @@ def test_click_on_item_img(driver, login, inv_page, item_page):
 @allure.id('3.2')
 @allure.epic('item page')
 @allure.feature('item card')
-@allure.description('go to product card by clicking on item title')
+@allure.title('go to product card by clicking on item title')
 @pytest.mark.positive
 def test_click_on_item_title(driver, login, inv_page, item_page):
     with allure.step('pick the item description'):

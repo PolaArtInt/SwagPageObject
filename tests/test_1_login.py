@@ -10,7 +10,7 @@ from locators.urls import URLs
 @allure.id('1.1')
 @allure.epic('auth page')
 @allure.feature('auth')
-@allure.description('standard user authorization')
+@allure.title('standard user authorization')
 @pytest.mark.positive
 def test_auth_positive(driver, inv_page, login):
     with allure.step('check the current url, the page header and the items presence on the inventory page'):
@@ -24,7 +24,7 @@ def test_auth_positive(driver, inv_page, login):
 @allure.id('1.2')
 @allure.epic('auth page')
 @allure.feature('auth')
-@allure.description('locked out user authorization')
+@allure.title('locked out user authorization')
 @pytest.mark.positive
 def test_auth_positive_locked_out_user(driver, locked_out_log, log_page):
     with allure.step('check the current url and the error message is provided'):
@@ -37,7 +37,7 @@ def test_auth_positive_locked_out_user(driver, locked_out_log, log_page):
 @allure.id('1.3')
 @allure.epic('auth page')
 @allure.feature('auth')
-@allure.description('problem user authorization')
+@allure.title('problem user authorization')
 @pytest.mark.positive
 def test_auth_positive_problem_user(driver, problem_log, inv_page):
     with allure.step('check the current url, the page header and the items presence on the inventory page'):
@@ -51,7 +51,7 @@ def test_auth_positive_problem_user(driver, problem_log, inv_page):
 @allure.id('1.3.1')
 @allure.epic('auth page')
 @allure.feature('auth')
-@allure.description('problem user authorization')
+@allure.title('problem user authorization')
 @pytest.mark.defect
 @pytest.mark.negative
 def test_problem_user_negative_inventory_imgs(driver, problem_log, inv_page):
@@ -74,7 +74,7 @@ def test_problem_user_negative_inventory_imgs(driver, problem_log, inv_page):
 @allure.id('1.4')
 @allure.epic('auth page')
 @allure.feature('auth')
-@allure.description('perfomance glitch user authorization')
+@allure.title('perfomance glitch user authorization')
 @pytest.mark.slow
 @pytest.mark.positive
 def test_auth_positive_performance_glitch_user(driver, glitch_log, inv_page):
@@ -89,7 +89,7 @@ def test_auth_positive_performance_glitch_user(driver, glitch_log, inv_page):
 @allure.id('1.5')
 @allure.epic('auth page')
 @allure.feature('auth')
-@allure.description('wrong data authorization')
+@allure.title('wrong data authorization')
 @pytest.mark.negative
 def test_auth_negative_wrong_login(driver, log_page):
     log_page.open()

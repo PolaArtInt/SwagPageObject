@@ -7,7 +7,7 @@ from locators.urls import URLs
 @allure.id('4.1')
 @allure.epic('order module')
 @allure.feature('order')
-@allure.description('processing purchase with relevant data')
+@allure.title('processing purchase with relevant data')
 @pytest.mark.positive
 def test_positive_order(driver, fake, login, inv_page, cart_page, order_page):
     with allure.step('pick the items and add to the cart'):
@@ -48,7 +48,7 @@ def test_positive_order(driver, fake, login, inv_page, cart_page, order_page):
 @allure.id('4.2')
 @allure.epic('order module')
 @allure.feature('order')
-@allure.description('processing purchase with empty cart')
+@allure.title('processing purchase with empty cart')
 @pytest.mark.defect
 @pytest.mark.xfail
 @pytest.mark.negative
