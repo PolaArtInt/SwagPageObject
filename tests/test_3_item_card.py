@@ -4,9 +4,10 @@ from pages.login_page import login
 from locators.urls import URLs
 
 
-@allure.id('#3.1')
+@allure.id('3.1')
+@allure.epic('item page')
 @allure.feature('item card')
-@allure.story('go to the product card by clicking the item image')
+# @allure.description('go to product card by clicking the item image')
 @pytest.mark.positive
 def test_click_on_item_img(driver, login, inv_page, item_page):
     with allure.step('pick the item description'):
@@ -21,9 +22,10 @@ def test_click_on_item_img(driver, login, inv_page, item_page):
                item_desc == item_card_desc, 'Different item description or wrong url'
 
 
-@allure.id('#3.2')
+@allure.id('3.2')
+@allure.epic('item page')
 @allure.feature('item card')
-@allure.story('going to product card by clicking on item title')
+# @allure.description('go to product card by clicking on item title')
 @pytest.mark.positive
 def test_click_on_item_title(driver, login, inv_page, item_page):
     with allure.step('pick the item description'):

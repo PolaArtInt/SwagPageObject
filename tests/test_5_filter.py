@@ -3,9 +3,10 @@ import allure
 from pages.login_page import login
 
 
-@allure.id('#5.1')
-@allure.feature('filter module')
-@allure.story('checking a to z filter')
+@allure.id('5.1')
+@allure.epic('filter module')
+@allure.feature('filter')
+# @allure.description('checking a to z filter')
 @pytest.mark.positive
 def test_a_to_z_filter(driver, login, inv_page, filter_page):
     with allure.step('sort the items by a a-z order before clicking the a-z filter'):
@@ -32,9 +33,10 @@ def test_a_to_z_filter(driver, login, inv_page, filter_page):
     inv_page.refresh()
 
 
-@allure.id('#5.2')
-@allure.feature('filter module')
-@allure.story('checking z to a filter')
+@allure.id('5.2')
+@allure.epic('filter module')
+@allure.feature('filter')
+# @allure.description('checking z to a filter')
 @pytest.mark.positive
 def test_z_to_a_filter(driver, login, inv_page, filter_page):
     with allure.step('sort the items by a z-a order before clicking the a-z filter'):
@@ -61,9 +63,10 @@ def test_z_to_a_filter(driver, login, inv_page, filter_page):
     inv_page.refresh()
 
 
-@allure.id('#5.3')
-@allure.feature('filter module')
-@allure.story('checking low to high filter')
+@allure.id('5.3')
+@allure.epic('filter module')
+@allure.feature('filter')
+# @allure.description('checking low to high filter')
 @pytest.mark.positive
 def test_low_to_high_filter(driver, login, inv_page, filter_page):
     with allure.step('sort the items by a low-high order before clicking the a-z filter'):
@@ -90,9 +93,10 @@ def test_low_to_high_filter(driver, login, inv_page, filter_page):
     inv_page.refresh()
 
 
-@allure.id('#5.4')
-@allure.feature('filter module')
-@allure.story('checking high to low filter')
+@allure.id('5.4')
+@allure.epic('filter module')
+@allure.feature('filter')
+# @allure.description('checking high to low filter')
 @pytest.mark.positive
 def test_high_to_low_filter(driver, login, inv_page, filter_page):
     with allure.step('sort the items by a high-low order before clicking the a-z filter'):

@@ -3,9 +3,10 @@ import allure
 from locators.urls import URLs
 
 
-@allure.id('#2.1')
-@allure.feature('cart module')
-@allure.story('adding items to cart')
+@allure.id('2.1')
+@allure.epic('cart module')
+@allure.feature('cart')
+# @allure.description('add items to cart')
 @pytest.mark.positive
 def test_add_to_cart(driver, login, inv_page, cart_page):
     with allure.step('pick the item text and add the item to the cart'):
@@ -30,9 +31,10 @@ def test_add_to_cart(driver, login, inv_page, cart_page):
         assert len(inv_page.item_names()) == 0, 'Cart is not empty'
 
 
-@allure.id('#2.2')
-@allure.feature('cart module')
-@allure.story('removing items from cart')
+@allure.id('2.2')
+@allure.epic('cart module')
+@allure.feature('cart')
+# @allure.description('remove items from cart')
 @pytest.mark.positive
 def test_remove_from_cart(driver, login, inv_page, cart_page):
     with allure.step('pick 3 items and add to the cart'):
@@ -62,9 +64,10 @@ def test_remove_from_cart(driver, login, inv_page, cart_page):
         assert cart_page.cart_tag_invisible(), 'Tag is visible, cart is not empty'
 
 
-@allure.id('#2.3')
-@allure.feature('cart module')
-@allure.story('adding items to cart from item card')
+@allure.id('2.3')
+@allure.epic('cart module')
+@allure.feature('cart')
+# @allure.description('add items to cart from item card')
 @pytest.mark.positive
 def test_add_item_from_item_card(driver, login, inv_page, cart_page, item_page):
     with allure.step('pick the item text and go to the item card'):
@@ -89,9 +92,10 @@ def test_add_item_from_item_card(driver, login, inv_page, cart_page, item_page):
         cart_page.cart_remove_btn().click()
 
 
-@allure.id('#2.4')
-@allure.feature('cart module')
-@allure.story('removing items from cart from item card')
+@allure.id('2.4')
+@allure.epic('cart module')
+@allure.feature('cart')
+# @allure.description('remove items from cart from item card')
 @pytest.mark.positive
 def test_remove_item_from_item_card(driver, login, inv_page, cart_page, item_page):
     with allure.step('pick the item text and add the item to the cart'):

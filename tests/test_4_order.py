@@ -4,9 +4,10 @@ from pages.login_page import login
 from locators.urls import URLs
 
 
-@allure.id('#4.1')
-@allure.feature('order module')
-@allure.story('processing purchase with relevant data')
+@allure.id('4.1')
+@allure.epic('order module')
+@allure.feature('order')
+# @allure.description('processing purchase with relevant data')
 @pytest.mark.positive
 def test_positive_order(driver, fake, login, inv_page, cart_page, order_page):
     with allure.step('pick the items and add to the cart'):
@@ -44,9 +45,10 @@ def test_positive_order(driver, fake, login, inv_page, cart_page, order_page):
         assert cart_page.cart_tag_invisible(), 'Tag is visible, cart is not empty'
 
 
-@allure.id('#4.2')
-@allure.feature('order module')
-@allure.story('processing purchase with empty cart')
+@allure.id('4.2')
+@allure.epic('order module')
+@allure.feature('order')
+# @allure.description('processing purchase with empty cart')
 @pytest.mark.defect
 @pytest.mark.xfail
 @pytest.mark.negative

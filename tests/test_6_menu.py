@@ -4,9 +4,10 @@ from pages.login_page import login
 from locators.urls import URLs
 
 
-@allure.id('#6.1')
-@allure.feature('menu module')
-@allure.story('checking login')
+@allure.id('6.1')
+@allure.epic('menu module')
+@allure.feature('menu')
+# @allure.description('checking logout')
 @pytest.mark.positive
 def test_positive_logout(driver, login, log_page, menu_page):
     with allure.step('find and click the burger menu'):
@@ -23,9 +24,10 @@ def test_positive_logout(driver, login, log_page, menu_page):
         assert log_btn.get_attribute('value') == 'LOGIN', 'Login button not found'
 
 
-@allure.id('#6.2')
-@allure.feature('menu module')
-@allure.story('checking about button clickability')
+@allure.id('6.2')
+@allure.epic('menu module')
+@allure.feature('menu')
+# @allure.description('checking about button clickability')
 @pytest.mark.positive
 def test_positive_about_btn(driver, login, menu_page, about_page):
     with allure.step('find and click the burger menu'):
@@ -40,9 +42,10 @@ def test_positive_about_btn(driver, login, menu_page, about_page):
                curr_title == about_page.exp_title(), 'Wrong page url or title'
 
 
-@allure.id('#6.3')
-@allure.feature('menu module')
-@allure.story('checking reset button')
+@allure.id('6.3')
+@allure.epic('menu module')
+@allure.feature('menu')
+# @allure.description('checking reset button')
 @pytest.mark.defect
 @pytest.mark.positive
 def test_reset_app_state_positive(driver, login, inv_page, cart_page, menu_page):
@@ -72,9 +75,10 @@ def test_reset_app_state_positive(driver, login, inv_page, cart_page, menu_page)
     cart_page.refresh()
 
 
-@allure.id('#6.4')
-@allure.feature('menu module')
-@allure.story('checking app state after clicking on reset button')
+@allure.id('6.4')
+@allure.epic('menu module')
+@allure.feature('menu')
+# @allure.description('checking app state after clicking on reset button')
 @pytest.mark.defect
 @pytest.mark.negative
 def test_reset_app_state_negative(driver, login, inv_page, cart_page, menu_page):
