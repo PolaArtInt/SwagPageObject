@@ -7,25 +7,25 @@ from locators.auth_module import AuthLocs, AuthData
 @pytest.fixture()
 def login(log_page):
     with allure.step('standard authorization'):
-        log_page.auth(AuthData.user, AuthData.pass_word)
+        return log_page.auth(AuthData.user, AuthData.pass_word)
 
 
 @pytest.fixture()
 def locked_out_log(log_page):
     with allure.step('locked out user authorization'):
-        log_page.auth(AuthData.locked_user, AuthData.pass_word)
+        return log_page.auth(AuthData.locked_user, AuthData.pass_word)
 
 
 @pytest.fixture()
 def problem_log(log_page):
     with allure.step('problem user authorization'):
-        log_page.auth(AuthData.problem_user, AuthData.pass_word)
+        return log_page.auth(AuthData.problem_user, AuthData.pass_word)
 
 
 @pytest.fixture()
 def glitch_log(log_page):
     with allure.step('perfomance glitch user authorization'):
-        log_page.auth(AuthData.glitch_user, AuthData.pass_word)
+        return log_page.auth(AuthData.glitch_user, AuthData.pass_word)
 
 
 class LoginPage(BasePage):

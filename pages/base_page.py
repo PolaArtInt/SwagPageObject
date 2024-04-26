@@ -16,6 +16,10 @@ class BasePage:
         with allure.step('open the page'):
             self.driver.get(self.url)
 
+    def get_url(self) -> str:
+        with allure.step('get the current page url'):
+            return self.driver.current_url
+
     def refresh(self):
         with allure.step('refresh the page'):
             self.driver.refresh()

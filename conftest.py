@@ -1,4 +1,6 @@
 import pytest
+import allure
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 
 from pages.login_page import LoginPage, login
@@ -28,6 +30,8 @@ def driver():
     driver = webdriver.Chrome(options=options)
 
     yield driver
+
+    allure.attach(driver.get_screenshot_as_png(), name='screenshot', attachment_type=AttachmentType.PNG)
     driver.quit()
 
 
@@ -36,6 +40,12 @@ def fake():
     from faker import Faker
     fake = Faker()
     return fake
+
+
+@pytest.fixture()
+def rand_num(num):
+    import random
+    return random.randint(0, num - 1)
 
 
 # pages:
