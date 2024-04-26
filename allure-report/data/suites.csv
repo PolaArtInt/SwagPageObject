@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Apr 26 21:13:21 GET 2024","Fri Apr 26 21:13:22 GET 2024","192","tests","test_2_cart","TestCart","","","remove items from cart from item card",""
+"passed","Fri Apr 26 21:13:04 GET 2024","Fri Apr 26 21:13:04 GET 2024","244","tests","test_2_cart","TestCart","","","remove items from cart",""
+"passed","Fri Apr 26 21:12:55 GET 2024","Fri Apr 26 21:12:56 GET 2024","514","tests","test_2_cart","TestCart","","","add items to cart",""
+"passed","Fri Apr 26 21:13:13 GET 2024","Fri Apr 26 21:13:13 GET 2024","580","tests","test_2_cart","TestCart","","","add items to cart from item card",""
