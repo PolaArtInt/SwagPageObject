@@ -1,5 +1,6 @@
 import pytest
 import allure
+from allure_commons.types import AttachmentType
 from selenium.common import TimeoutException
 
 from pages.form_page import form_conditions
@@ -22,6 +23,7 @@ def test_register_btn_unblocked(driver, fake, form_conditions, form_page):
     with allure.step('check a register button clickability'):
         assert checkbox.is_selected(), 'Checkbox is not checked'
         assert form_page.form_reg_btn().is_enabled(), 'Register button is blocked'
+    allure.attach(driver.get_screenshot_as_png(), name='register_btn_unblocked', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('0.2')
@@ -39,6 +41,7 @@ def test_positive_fill_form_fields(driver, fake, form_conditions, form_page):
 
     with allure.step('check the url is changed'):
         assert driver.current_url != FormLocs.form_url, 'Url is not changed'
+    allure.attach(driver.get_screenshot_as_png(), name='fill_form_fields', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('0.3')
@@ -61,6 +64,7 @@ def test_negative_fill_name_with_spaces(driver, fake, form_conditions, form_page
             pass
         else:
             print('Name is incorrect. Register button should be blocked')
+    allure.attach(driver.get_screenshot_as_png(), name='fill_name_with_spaces', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('0.4')
@@ -80,3 +84,6 @@ def test_btn_blocked_with_empty_fields(driver, form_conditions, form_page):
             pass
         else:
             print('Fields are empty. Register button should be blocked')
+    allure.attach(
+        driver.get_screenshot_as_png(), name='btn_blocked_with_empty_fields', attachment_type=AttachmentType.PNG)
+

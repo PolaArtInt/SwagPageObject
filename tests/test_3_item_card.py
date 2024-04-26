@@ -1,5 +1,7 @@
 import pytest
 import allure
+from allure_commons.types import AttachmentType
+
 from pages.login_page import login
 from locators.urls import URLs
 
@@ -20,6 +22,7 @@ def test_click_on_item_img(driver, login, inv_page, item_page):
         item_card_desc = item_page.card_desc().text
         assert driver.current_url != URLs.inventory_url and \
                item_desc == item_card_desc, 'Different item description or wrong url'
+    allure.attach(driver.get_screenshot_as_png(), name='click_on_item_img', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('3.2')
@@ -37,3 +40,4 @@ def test_click_on_item_title(driver, login, inv_page, item_page):
     with allure.step('check if the url is changed and we can get the same item'):
         item_card_desc = item_page.card_desc().text
         assert item_desc == item_card_desc and driver.current_url != URLs.url, 'Different item description or wrong url'
+    allure.attach(driver.get_screenshot_as_png(), name='click_on_item_title', attachment_type=AttachmentType.PNG)

@@ -1,5 +1,7 @@
 import pytest
 import allure
+from allure_commons.types import AttachmentType
+
 from pages.login_page import login
 from locators.urls import URLs
 
@@ -43,6 +45,7 @@ def test_positive_order(driver, fake, login, inv_page, cart_page, order_page):
         items_in_cart = inv_page.item_names()
         assert len(items_in_cart) == 0, 'Cart is not empty'
         assert cart_page.cart_tag_invisible(), 'Tag is visible, cart is not empty'
+    allure.attach(driver.get_screenshot_as_png(), name='positive_order', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('4.2')
@@ -80,3 +83,4 @@ def test_negative_empty_order(driver, fake, login, inv_page, cart_page, order_pa
                 'Shopping cart is empty, wrong checkout'
         except AssertionError:
             print('Shopping cart should not be empty, wrong checkout')
+    allure.attach(driver.get_screenshot_as_png(), name='empty_order', attachment_type=AttachmentType.PNG)

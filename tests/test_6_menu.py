@@ -1,5 +1,7 @@
 import pytest
 import allure
+from allure_commons.types import AttachmentType
+
 from pages.login_page import login
 from locators.urls import URLs
 
@@ -22,6 +24,7 @@ def test_positive_logout(driver, login, log_page, menu_page):
         log_btn = log_page.login_btn()
         assert log_page.login_btn(), 'Login button not appearing'
         assert log_btn.get_attribute('value') == 'LOGIN', 'Login button not found'
+    allure.attach(driver.get_screenshot_as_png(), name='positive_logout', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('6.2')
@@ -40,6 +43,7 @@ def test_positive_about_btn(driver, login, menu_page, about_page):
         curr_title = driver.title
         assert driver.current_url == URLs.about_url and \
                curr_title == about_page.exp_title(), 'Wrong page url or title'
+    allure.attach(driver.get_screenshot_as_png(), name='about_btn', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('6.3')
@@ -73,6 +77,7 @@ def test_reset_app_state_positive(driver, login, inv_page, cart_page, menu_page)
             print(f'Cart is not empty. There are {len(inv_page.item_names())} items in it')
 
     cart_page.refresh()
+    allure.attach(driver.get_screenshot_as_png(), name='reset_app_state_positive', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('6.4')
@@ -116,3 +121,4 @@ def test_reset_app_state_negative(driver, login, inv_page, cart_page, menu_page)
             print(f'\nButtons are not unpressed after reset the app')
 
     cart_page.refresh()
+    allure.attach(driver.get_screenshot_as_png(), name='reset_app_state', attachment_type=AttachmentType.PNG)

@@ -1,5 +1,7 @@
 import pytest
 import allure
+from allure_commons.types import AttachmentType
+
 from pages.login_page import login
 
 
@@ -31,6 +33,7 @@ def test_a_to_z_filter(driver, login, inv_page, filter_page):
         assert before_a_z == after_a_z, 'Filter A to Z doesn\'t work properly'
 
     inv_page.refresh()
+    allure.attach(driver.get_screenshot_as_png(), name='a_to_z_filter', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('5.2')
@@ -61,6 +64,7 @@ def test_z_to_a_filter(driver, login, inv_page, filter_page):
         assert before_z_a == after_z_a, 'Filter Z to A doesn\'t work properly'
 
     inv_page.refresh()
+    allure.attach(driver.get_screenshot_as_png(), name='z_to_a_filter', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('5.3')
@@ -91,6 +95,7 @@ def test_low_to_high_filter(driver, login, inv_page, filter_page):
         assert before_lo_hi == after_lo_hi, 'Filter Low to High doesn\'t work properly'
 
     inv_page.refresh()
+    allure.attach(driver.get_screenshot_as_png(), name='low_to_high_filter', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('5.4')
@@ -121,3 +126,4 @@ def test_high_to_low_filter(driver, login, inv_page, filter_page):
         assert before_hi_lo == after_hi_lo, 'Filter Low to High doesn\'t work properly'
 
     inv_page.refresh()
+    allure.attach(driver.get_screenshot_as_png(), name='high_to_low_filter', attachment_type=AttachmentType.PNG)

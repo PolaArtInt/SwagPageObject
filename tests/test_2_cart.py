@@ -1,5 +1,7 @@
 import pytest
 import allure
+from allure_commons.types import AttachmentType
+
 from locators.urls import URLs
 
 
@@ -29,6 +31,7 @@ def test_add_to_cart(driver, login, inv_page, cart_page):
 
     with allure.step('check if the cart is empty'):
         assert len(inv_page.item_names()) == 0, 'Cart is not empty'
+    allure.attach(driver.get_screenshot_as_png(), name='add_to_cart', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('2.2')
@@ -62,6 +65,7 @@ def test_remove_from_cart(driver, login, inv_page, cart_page):
         items_in_cart = inv_page.item_names()
         assert len(items_in_cart) == 0, 'Cart is not empty'
         assert cart_page.cart_tag_invisible(), 'Tag is visible, cart is not empty'
+    allure.attach(driver.get_screenshot_as_png(), name='remove_from_cart', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('2.3')
@@ -90,6 +94,7 @@ def test_add_item_from_item_card(driver, login, inv_page, cart_page, item_page):
 
     with allure.step('remove the item from the cart'):
         cart_page.cart_remove_btn().click()
+    allure.attach(driver.get_screenshot_as_png(), name='add_item_from_item_card', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('2.4')
@@ -126,3 +131,4 @@ def test_remove_item_from_item_card(driver, login, inv_page, cart_page, item_pag
 
     with allure.step('check if the cart tag is not presenting on the page'):
         assert cart_page.cart_tag_invisible(), 'Tag is visible, cart is not empty'
+    allure.attach(driver.get_screenshot_as_png(), name='remove_item_from_item_card', attachment_type=AttachmentType.PNG)

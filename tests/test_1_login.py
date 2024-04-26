@@ -1,6 +1,7 @@
 import pytest
 import requests
 import allure
+from allure_commons.types import AttachmentType
 
 from pages.login_page import locked_out_log, problem_log, glitch_log
 from locators.auth_module import AuthLocs, AuthData
@@ -19,6 +20,7 @@ def test_auth_positive(driver, inv_page, login):
         assert len(inv_page.inventory_cards()) > 0, 'There are no item cards on the inventory page'
 
     print(f'\nStandard user...')
+    allure.attach(driver.get_screenshot_as_png(), name='auth_positive', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('1.2')
@@ -32,6 +34,7 @@ def test_auth_positive_locked_out_user(driver, locked_out_log, log_page):
         assert log_page.locked_msg() == AuthLocs.locked_msg, 'Login error'
 
     print(f'\nLocked out user... {log_page.locked_msg()}')
+    allure.attach(driver.get_screenshot_as_png(), name='auth_locked_out_user', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('1.3')
@@ -46,6 +49,7 @@ def test_auth_positive_problem_user(driver, problem_log, inv_page):
         assert len(inv_page.inventory_cards()) > 0, 'There are no item cards on the inventory page'
 
     print(f'\nProblem user...')
+    allure.attach(driver.get_screenshot_as_png(), name='auth_problem_user', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('1.3.1')
@@ -69,6 +73,9 @@ def test_problem_user_negative_inventory_imgs(driver, problem_log, inv_page):
     with allure.step('check the current url'):
         assert driver.current_url == URLs.inventory_url, 'Wrong url'
     print(f'\nProblem user...')
+    allure.attach(
+        driver.get_screenshot_as_png(), name='auth_problem_user_negative_inventory_imgs',
+        attachment_type=AttachmentType.PNG)
 
 
 @allure.id('1.4')
@@ -84,6 +91,8 @@ def test_auth_positive_performance_glitch_user(driver, glitch_log, inv_page):
         assert len(inv_page.inventory_cards()) > 0, 'There are no item cards on the inventory page'
 
     print(f'\nPerfomance glitch user...')
+    allure.attach(
+        driver.get_screenshot_as_png(), name='auth_performance_glitch_user', attachment_type=AttachmentType.PNG)
 
 
 @allure.id('1.5')
@@ -103,3 +112,4 @@ def test_auth_negative_wrong_login(driver, log_page):
         assert log_page.login_err_msg() == AuthLocs.login_err_msg, 'Login error'
 
     print(f'\nWrong login user... {log_page.login_err_msg()}')
+    allure.attach(driver.get_screenshot_as_png(), name='auth_negative_wrong_login', attachment_type=AttachmentType.PNG)
