@@ -1,7 +1,4 @@
-from typing import List
-
 import allure
-import pytest
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement

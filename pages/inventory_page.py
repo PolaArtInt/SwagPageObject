@@ -1,5 +1,3 @@
-import pytest
-
 from pages.base_page import BasePage
 from locators.inventory_module import InventoryLocs
 
