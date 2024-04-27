@@ -3,6 +3,7 @@ import allure
 
 from pages.base_test import BaseTest
 from pages.login_page import login
+
 from locators.urls import URLs
 
 
@@ -12,7 +13,7 @@ class TestMenu(BaseTest):
     @allure.feature('menu')
     @allure.title('checking logout')
     @pytest.mark.positive
-    def test_positive_logout(self, driver, login, log_page, menu_page):
+    def test_positive_logout(self, driver, log_page, login, menu_page):
         with allure.step('find and click the burger menu'):
             menu_page.menu_btn().click()
 
@@ -51,8 +52,8 @@ class TestMenu(BaseTest):
     @pytest.mark.positive
     def test_reset_app_state_positive(self, driver, login, inv_page, cart_page, menu_page):
         with allure.step('add 2 items to the cart'):
-            inv_page.add_btns()[4].click()
-            inv_page.add_btns()[4].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
 
         with allure.step('check if the cart quantity tag shows 2'):
             tag = cart_page.cart_tag()
@@ -86,8 +87,8 @@ class TestMenu(BaseTest):
             add_btns_before = inv_page.add_btns()
 
         with allure.step('add 2 items to the cart'):
-            inv_page.add_btns()[0].click()
-            inv_page.add_btns()[1].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
 
         with allure.step('check the items quantity in the cart is equal to 2'):
             tag = cart_page.cart_tag()

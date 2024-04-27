@@ -1,5 +1,6 @@
 import pytest
 import allure
+
 from pages.base_page import BasePage
 from locators.auth_module import AuthLocs, AuthData
 

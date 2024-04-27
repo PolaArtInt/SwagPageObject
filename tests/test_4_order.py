@@ -14,8 +14,8 @@ class TestOrder(BaseTest):
     @pytest.mark.positive
     def test_positive_order(self, driver, fake, login, inv_page, cart_page, order_page):
         with allure.step('pick the items and add to the cart'):
-            inv_page.add_btns()[5].click()
-            inv_page.add_btns()[0].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
 
         with allure.step('check the items quantity in the cart'):
             tag = cart_page.cart_tag()

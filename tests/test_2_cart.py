@@ -2,6 +2,7 @@ import pytest
 import allure
 
 from pages.base_test import BaseTest
+from pages.login_page import login
 from locators.urls import URLs
 
 
@@ -40,9 +41,9 @@ class TestCart(BaseTest):
     @pytest.mark.positive
     def test_remove_from_cart(self, driver, login, inv_page, cart_page):
         with allure.step('pick 3 items and add to the cart'):
-            inv_page.add_btns()[5].click()
-            inv_page.add_btns()[1].click()
-            inv_page.add_btns()[3].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
+            inv_page.add_btns()[inv_page.rand_btn()].click()
 
         with allure.step('check if the items quantity in the cart is equal to 3'):
             tag = cart_page.cart_tag().text

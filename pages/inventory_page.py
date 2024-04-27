@@ -1,3 +1,5 @@
+import pytest
+
 from pages.base_page import BasePage
 from locators.inventory_module import InventoryLocs
 
@@ -37,7 +39,12 @@ class InventoryPage(BasePage):
         return self.find_el(InventoryLocs.item_prices)
 
     def add_btns(self):
-        return self.find_elems(InventoryLocs.add_btns)
+        return self.are_visible(InventoryLocs.add_btns)
+
+    def rand_btn(self) -> int:
+        import random
+        num = random.randint(0, len(self.add_btns()) - 1)
+        return num
 
     def add_btn(self):
         return self.find_el(InventoryLocs.add_btns)

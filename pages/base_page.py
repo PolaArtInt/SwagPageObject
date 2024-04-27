@@ -1,4 +1,7 @@
+from typing import List
+
 import allure
+import pytest
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -32,6 +35,9 @@ class BasePage:
 
     def is_visible(self, locator) -> WebElement:
         return self.wait.until(ec.visibility_of_element_located(locator))
+
+    def are_visible(self, locator) -> list[WebElement]:
+        return self.wait.until(ec.visibility_of_all_elements_located(locator))
 
     def is_invisible(self, locator) -> WebElement:
         return self.wait.until(ec.invisibility_of_element_located(locator))

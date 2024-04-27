@@ -3,8 +3,7 @@ import requests
 import allure
 
 from pages.base_test import BaseTest
-from pages.login_page import locked_out_log, problem_log, glitch_log
-
+from pages.login_page import login, locked_out_log, problem_log, glitch_log
 from locators.auth_module import AuthLocs, AuthData
 from locators.urls import URLs
 
