@@ -1,8 +1,15 @@
+import allure
+
 from pages.base_page import BasePage
 from locators.menu_module import MenuLocs
 
 
 class MenuMod(BasePage):
+    def logout(self):
+        with allure.step('logout...'):
+            self.menu_btn().click()
+            self.logout_btn().click()
+
     def menu_btn(self):
         return self.find_el(MenuLocs.menu_btn)
 

@@ -1,32 +1,5 @@
-import pytest
-import allure
 from pages.base_page import BasePage
 from locators.form_data import FormLocs
-
-
-@pytest.fixture()
-def form_conditions(driver, form_page):
-    form_page.open()
-
-    with allure.step('check the current url'):
-        assert driver.current_url == FormLocs.form_url and \
-               FormLocs.form_header == 'Register', 'Wrong page'
-
-    name_field = form_page.form_name()
-    pass_field = form_page.form_pass()
-    checkbox = form_page.form_checkbox()
-
-    with allure.step('check the form fields are empty'):
-        if checkbox.is_selected() or name_field.text != '' or pass_field.text != '':
-            checkbox.click()
-            name_field.clear()
-            pass_field.clear()
-
-        assert name_field.text == '', 'Input Email is filled'
-        assert pass_field.text == '', 'Input Password is filled'
-        assert not checkbox.is_selected(), 'Checkbox is selected'
-
-    yield form_conditions
 
 
 class FormPage(BasePage):

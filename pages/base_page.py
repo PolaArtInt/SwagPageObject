@@ -1,4 +1,5 @@
 import allure
+from selenium.webdriver import ActionChains
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -44,3 +45,6 @@ class BasePage:
 
     def is_clickable(self, locator) -> WebElement:
         return self.wait.until(ec.element_to_be_clickable(locator))
+
+    def hold_mouse_on_element(self, locator):
+        ActionChains(self.driver).move_to_element(self.is_visible(locator)).perform()

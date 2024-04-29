@@ -8,7 +8,7 @@ class AuthLocs:
 
 
 class AuthData:
-    user = 'standard_user'
+    standard_user = 'standard_user'
     locked_user = 'locked_out_user'
     problem_user = 'problem_user'
     glitch_user = 'performance_glitch_user'
