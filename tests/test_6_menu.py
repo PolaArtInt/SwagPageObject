@@ -19,6 +19,7 @@ class TestMenu(BaseTest):
         #
         # with allure.step('find and click the logout button...'):
         #     self.menu_page.logout_btn().click()
+        # or:
 
         self.menu_page.logout()
 
@@ -58,8 +59,10 @@ class TestMenu(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('add 2 items to the cart...'):
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
+            btns_list = self.inv_page.add_btns()
+            pick_num = self.rand_num(len(btns_list))
+            self.inv_page.add_btns()[pick_num].click()
+            self.inv_page.add_btns()[pick_num].click()
 
         with allure.step('check if the cart quantity tag shows 2...'):
             tag = self.cart_page.cart_tag()
@@ -95,8 +98,10 @@ class TestMenu(BaseTest):
             add_btns_before = self.inv_page.add_btns()
 
         with allure.step('add 2 items to the cart...'):
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
+            btns_list = self.inv_page.add_btns()
+            pick_num = self.rand_num(len(btns_list))
+            self.inv_page.add_btns()[pick_num].click()
+            self.inv_page.add_btns()[pick_num].click()
 
         with allure.step('check the items quantity in the cart is equal to 2...'):
             tag = self.cart_page.cart_tag()

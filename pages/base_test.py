@@ -47,6 +47,12 @@ class BaseTest:
         fake = Faker()
         return fake
 
+    @staticmethod
+    def rand_num(num) -> int:
+        import random
+        num = random.randint(0, num - 1)
+        return num
+
     @pytest.fixture()
     def in_out(self, driver):
         page = BasePage(driver, URLs.url)

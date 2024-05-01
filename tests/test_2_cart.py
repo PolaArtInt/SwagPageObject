@@ -15,8 +15,10 @@ class TestCart(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick the item text and add the item to a cart...'):
-            item_title = self.inv_page.item_names()[3].text
-            self.inv_page.add_btns()[3].click()
+            item_titles = self.inv_page.item_names()
+            pick_num = self.rand_num(len(item_titles))
+            item_title = self.inv_page.item_names()[pick_num].text
+            self.inv_page.add_btns()[pick_num].click()
 
         with allure.step('check if the items quantity in the cart is equal to 1...'):
             tag = self.cart_page.cart_tag().text
@@ -44,9 +46,11 @@ class TestCart(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick 3 items and add them to the cart...'):
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
+            btns_list = self.inv_page.add_btns()
+            pick_num = self.rand_num(len(btns_list))
+            self.inv_page.add_btns()[pick_num].click()
+            self.inv_page.add_btns()[pick_num].click()
+            self.inv_page.add_btns()[pick_num].click()
 
         with allure.step('check if the items quantity in the cart is equal to 3...'):
             tag = self.cart_page.cart_tag().text
@@ -78,8 +82,10 @@ class TestCart(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick the item text and go to the item card...'):
-            item_title = self.inv_page.item_names()[3].text
-            self.inv_page.item_names()[3].click()
+            item_titles = self.inv_page.item_names()
+            pick_num = self.rand_num(len(item_titles))
+            item_title = self.inv_page.item_names()[pick_num].text
+            self.inv_page.item_names()[pick_num].click()
 
         with allure.step('check if the item title is the same item title...'):
             card_item_title = self.item_page.card_name().text
@@ -108,15 +114,17 @@ class TestCart(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick the item text and add the item to the cart...'):
-            item_title_before = self.inv_page.item_names()[2].text
-            self.inv_page.add_btns()[2].click()
+            item_titles = self.inv_page.item_names()
+            pick_num = self.rand_num(len(item_titles))
+            item_title_before = self.inv_page.item_names()[pick_num].text
+            self.inv_page.add_btns()[pick_num].click()
 
         with allure.step('check if the items quantity in the cart is equal to 1...'):
             tag = self.cart_page.cart_tag()
             assert int(tag.text) == 1, 'Wrong quantity of items'
 
         with allure.step('go to the cart...'):
-            self.inv_page.item_names()[2].click()
+            self.inv_page.item_names()[pick_num].click()
 
         with allure.step('check the item title in the card...'):
             item_title_after = self.item_page.card_name().text

@@ -15,8 +15,10 @@ class TestOrder(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick the items and add them to the cart...'):
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
-            self.inv_page.add_btns()[self.inv_page.rand_btn()].click()
+            btns_list = self.inv_page.add_btns()
+            pick_num = self.rand_num(len(btns_list))
+            self.inv_page.add_btns()[pick_num].click()
+            self.inv_page.add_btns()[pick_num].click()
 
         with allure.step('check the items quantity in the cart...'):
             tag = self.cart_page.cart_tag()

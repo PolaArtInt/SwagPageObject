@@ -15,10 +15,12 @@ class TestItem(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick the item description...'):
-            item_desc = self.inv_page.item_descs()[2].text
+            descs_list = self.inv_page.add_btns()
+            pick_num = self.rand_num(len(descs_list))
+            item_desc = self.inv_page.item_descs()[pick_num].text
 
         with allure.step('pick the item image and click on it...'):
-            self.inv_page.item_imgs()[2].click()
+            self.inv_page.item_imgs()[pick_num].click()
 
         with allure.step('check if the url changed and we can get the same item...'):
             item_card_desc = self.item_page.card_desc().text
@@ -34,10 +36,12 @@ class TestItem(BaseTest):
         self.log_page.login('standard_user')
 
         with allure.step('pick the item description...'):
-            item_desc = self.inv_page.item_descs()[3].text
+            descs_list = self.inv_page.add_btns()
+            pick_num = self.rand_num(len(descs_list))
+            item_desc = self.inv_page.item_descs()[pick_num].text
 
         with allure.step('pick the item title and click on it...'):
-            self.inv_page.item_names()[3].click()
+            self.inv_page.item_names()[pick_num].click()
 
         with allure.step('check if the url is changed and we can get the same item...'):
             item_card_desc = self.item_page.card_desc().text

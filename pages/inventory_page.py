@@ -39,11 +39,6 @@ class InventoryPage(BasePage):
     def add_btns(self):
         return self.are_visible(InventoryLocs.add_btns)
 
-    def rand_btn(self) -> int:
-        import random
-        num = random.randint(0, len(self.add_btns()) - 1)
-        return num
-
     def add_btn(self):
         return self.find_el(InventoryLocs.add_btns)
 
