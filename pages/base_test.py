@@ -50,8 +50,9 @@ class BaseTest:
     @staticmethod
     def rand_num(num) -> int:
         import random
-        num = random.randint(0, num - 1)
-        return num
+        with allure.step('create a random number based on the same items length...'):
+            num = random.randint(0, num - 1)
+            return num
 
     @pytest.fixture()
     def in_out(self, driver):
